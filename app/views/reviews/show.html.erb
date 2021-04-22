@@ -1,0 +1,9 @@
+<section class="review-details">
+
+  <h1>Review for <%= @movie.title %></h1>
+  <h2>Written by: <%= @review.name %></h2>
+  <span class="date">
+    <%= time_ago_in_words(review.created_at) %> ago
+  </span>
+
+</section>
