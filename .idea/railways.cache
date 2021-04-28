@@ -2,6 +2,14 @@ do /Users/jamesm.mitchell/rails_studio/flix/bin/bundle exec /Users/jamesm.mitche
 Ruby enVironment Manager 1.29.12 (latest) (c) 2009-2020 Michal Papis, Piotr Kuczynski, Wayne E. Seguin
 
                                Prefix Verb   URI Pattern                                                                              Controller#Action
+                                users GET    /users(.:format)                                                                         users#index
+                                      POST   /users(.:format)                                                                         users#create
+                             new_user GET    /users/new(.:format)                                                                     users#new
+                            edit_user GET    /users/:id/edit(.:format)                                                                users#edit
+                                 user GET    /users/:id(.:format)                                                                     users#show
+                                      PATCH  /users/:id(.:format)                                                                     users#update
+                                      PUT    /users/:id(.:format)                                                                     users#update
+                                      DELETE /users/:id(.:format)                                                                     users#destroy
                                  root GET    /                                                                                        movies#index
                         movie_reviews GET    /movies/:movie_id/reviews(.:format)                                                      reviews#index
                                       POST   /movies/:movie_id/reviews(.:format)                                                      reviews#create
