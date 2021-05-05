@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-
+    session[:user_id] = nil
+    redirect_to movies_url, notice: "You've been signed out successfully!"
   end
 
 end
