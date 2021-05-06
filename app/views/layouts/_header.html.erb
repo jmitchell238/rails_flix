@@ -5,9 +5,12 @@
       <li>
         <%= link_to "All Movies", root_path %>
       </li>
-      <li>
-        <%= link_to "All Users", users_path %>
-      </li>
+      <% if current_user_admin? %>
+        <li>
+          <%= link_to "All Users", users_path %>
+        </li>
+      <% end %>
+
     </ul>
     <ul class="right">
       <% if current_user %>

@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
 
+  # The following before_action arrays operate the same way. Ruby Mine prefers the 2nd
+  # format rather than the first.
   before_action :require_signin, except: [:new, :create]
-  before_action :require_correct_user, only: [:edit, :update, :destroy]
+  before_action :require_correct_user, only: %i[edit update]
+  before_action :require_admin, only: %i[destroy]
 
   def index
     @users = User.all
@@ -25,8 +28,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -37,9 +39,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
-    session[:user_id] = nil
-    redirect_to movies_url, alert: 'Account successfully Deleted!'
+    redirect_to root_url, alert: 'Account successfully Deleted!'
   end
 
   private
