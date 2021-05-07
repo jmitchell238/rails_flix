@@ -6,7 +6,8 @@
       <%= render 'shared/stars', percent: review.stars_as_percent %>
 
       <p>
-        <%= link_to review.name, edit_movie_review_path(@movie, review) %>
+        <%= profile_image(review.user, 35) %>
+        <%= link_to review.user.name, review.user %>
         <span class="date">
           <%= time_ago_in_words(review.created_at) %> ago
         </span>
