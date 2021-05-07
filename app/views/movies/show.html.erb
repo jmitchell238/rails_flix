@@ -8,7 +8,7 @@
       <%= year_of(@movie) %> &bull; <%= @movie.rating %>
     </h2>
     <div class="reviews">
-      =-'<%= render 'shared/stars', percent: @movie.average_stars_as_percent %>
+      <%= render 'shared/stars', percent: @movie.average_stars_as_percent %>
       <%= link_to pluralize(@movie.reviews.size, "review"), movie_reviews_path(@movie) %>
     </div>
     <p>
@@ -29,13 +29,15 @@
       </tr>
     </table>
     <br><br>
-    <div>
-      <h2>New Review for <%= @movie.title %></h2>
-      <%= render 'reviews/form' %>
-    </div>
 
-    <%#= link_to "Write Review", new_movie_review_path(@movie), class: "review" %>
-    
+    <% if current_user %>
+      <div>
+        <h2>New Review for <%= @movie.title %></h2>
+        <%= render 'reviews/form' %>
+      </div>
+      <%#= link_to "Write Review", new_movie_review_path(@movie), class: "review" %>
+    <% end %>
+
   </div>
 </section>
 
