@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
 
 
   def index
-    @movies = Movie.released
+    @movies = Movie.send(movies_filter)
   end
 
   def show
@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
-      redirect_to @movie, notice: "Movie Successfully Updated!"
+      redirect_to @movie, notice: 'Movie Successfully Updated!'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     if @movie.save
-      redirect_to @movie, notice: "Movie Successfully Created!"
+      redirect_to @movie, notice: 'Movie Successfully Created!'
     else
       render :new
     end
@@ -47,7 +47,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @movie.destroy
-    redirect_to movies_url, alert: "Movie Successfully Deleted!"
+    redirect_to movies_url, alert: 'Movie Successfully Deleted!'
   end
 
   private
@@ -56,5 +56,13 @@ class MoviesController < ApplicationController
       permit(:title, :description, :rating,
              :released_on, :total_gross, :director, :duration, :image_file_name,
              genre_ids: [])
+  end
+
+  def movies_filter
+    if params[:filter].in? %w(upcoming recent hits flops)
+      params[:filter]
+    else
+      :released
+    end
   end
 end
