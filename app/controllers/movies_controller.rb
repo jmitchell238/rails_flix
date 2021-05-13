@@ -47,10 +47,12 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).
-      permit(:title, :description, :rating,
-             :released_on, :total_gross, :main_image, :director, :duration,
-             genre_ids: [])
+    params.require(:movie).permit(:title, :description, :rating, :released_on, :total_gross, :main_image, :director, 
+                                  :duration, genre_ids: [])
+  end
+
+  def set_movie
+    @movie = Movie.find_by!(slug: params[:id])
   end
 
   def set_movie
