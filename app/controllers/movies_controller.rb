@@ -49,7 +49,7 @@ class MoviesController < ApplicationController
   def movie_params
     params.require(:movie).
       permit(:title, :description, :rating,
-             :released_on, :total_gross, :director, :duration, :image_file_name,
+             :released_on, :total_gross, :main_image, :director, :duration,
              genre_ids: [])
   end
 
